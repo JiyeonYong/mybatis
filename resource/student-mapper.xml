@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapper namespace="student">
+  	<insert id="studentOne" parameterType="kr.or.iei.student.model.vo.Student">
+  	insert into student values(seq_student.nextval,#{studentName},#{studentTel},#{studentEmail},#{studentAddr},default)
+  	</insert>
+  	<select id="selectStudent" parameterType="Integer" resultType="kr.or.iei.student.model.vo.Student">
+  		select student_no as studentNo,
+  				student_name as studentName,
+  				student_tel as studentTel,
+  				student_email as studentEmail,
+  				student_addr as studentAddr
+  				from student 
+  				where student_no = #{studentNo}
+  	</select>
+  	<select id="selectAllStudent" resultType="kr.or.iei.student.model.vo.Student">
+  	select student_no as studentNo,
+  				student_name as studentName,
+  				student_tel as studentTel,
+  				student_email as studentEmail,
+  				student_addr as studentAddr,
+  				reg_date as regDate
+  				from student 
+  				order by student_no
+  	</select>
+  	
+  	<update id="updateStudent" parameterType="kr.or.iei.student.model.vo.Student">
+  	update student set 
+  	student_name=#{studentName},
+  	student_tel=#{studentTel},
+  	student_email=#{studentEmail},
+  	student_addr=#{studentAddr}
+  	where student_no = #{studentNo}  	
+  	</update>
+  	
+  	<delete id="deleteStudent" parameterType="map">
+  	delete from student where student_no = #{studentNo} 
+  	and student_name = #{studentName}
+  	</delete>
+
+  
+  
+</mapper>
+
+
